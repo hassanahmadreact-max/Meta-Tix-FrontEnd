@@ -13,6 +13,13 @@ import AdminDashboard from "./components/pages/admin/admin-dashboard";
 import ManageUsers from "./components/pages/admin/manageuser";
 import ManageEvents from "./components/pages/admin/manageevents";
 import SystemLogs from "./components/pages/admin/systemlogs";
+import OrganizerDashboard from "./components/pages/organizer/organiser-dashboard";
+import OrgProfile from "./components/pages/organizer/profile"
+import CreateEvent from "./components/pages/organizer/createevent";
+import MyEvents from "./components/pages/organizer/event";
+import ScanTickets from "./components/pages/organizer/qrscanner";
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -32,8 +39,11 @@ function App() {
 
         {/* 🔵 ORGANIZER ROUTES (Only Organizers) */}
         <Route element={<ProtectedRoute allowedRoles={["Organizer"]} />}>
-            {/* <Route path="/organizer-dashboard" element={<OrganizerDashboard />} /> */}
-            {/* <Route path="/create-event" element={<CreateEvent />} /> */}
+            <Route path="/organizer-dashboard" element={<OrganizerDashboard />} /> 
+            <Route path="/organizer/profile" element={<OrgProfile />} /> 
+            <Route path="/organizer/create" element={<CreateEvent />} /> 
+            <Route path="/organizer/events" element={<MyEvents />} /> 
+            <Route path="/organizer/scan" element={<ScanTickets />} /> 
         </Route>
 
         {/* 🔴 ADMIN ROUTES (Only Admins) */}
@@ -46,7 +56,6 @@ function App() {
         
         {/* 🟣 SHARED ROUTES */}
         <Route element={<ProtectedRoute allowedRoles={["Admin", "Organizer"]} />}>
-            {/* <Route path="/sales-reports" element={<Reports />} /> */}
         </Route>
       </Routes>
     </BrowserRouter>
